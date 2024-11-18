@@ -23,7 +23,7 @@ rm -f /usr/local/bin/lsd /usr/local/bin/ls-trip
 To update:
 ```
 (at the top of the repo)
-git pull origin release
+git pull
 cargo build --release
 rm -f /usr/local/bin/lsd /usr/local/bin/ls-trip
 cp target/release/ls-trip /usr/local/bin/ls-trip

@@ -1,3 +1,6 @@
+-
+This is a release branch, which means it is sometimes behind the master, but is much less likely to contain errors
+-
 **ls-trip**
 -
 Ls-trip is a shell program, that simulates a drug trip every time you mistype "ls" for "lsd" in the terminal. It can also be activated with the "ls-trip" command.

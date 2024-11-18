@@ -1,5 +1,3 @@
-use ncurses::COLOR_WHITE;
-
 pub fn colors_setup()
 {
     ncurses::init_color(11, 0x00, 0xbc, 0xd4); // Aqua

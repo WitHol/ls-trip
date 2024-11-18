@@ -10,7 +10,7 @@ pub fn circles(mut duration: f32)
     let mut circles: Vec<Circle> = vec![];
     let amount: i8 = rand::thread_rng().gen_range(8..13);
     
-    for _ in (0..amount)
+    for _ in 0..amount
     {
         circles.push(Circle::new());
     }
@@ -47,7 +47,7 @@ fn render_circles(circles: &Vec<Circle>)
                 level += 1.0/circle.distance(unity, unitx);
             }
 
-            let pair = match ((level*0.6).round() % 9.0)
+            let pair = match (level*0.6).round() % 9.0
             {
                 0.0 => PAIR_WHITE,
                 1.0 => PAIR_AQUA,
@@ -126,20 +126,6 @@ impl Circle
         self.offset += self.delta_offset * delta_time;
 
         self.calculate_pos();
-    }
-
-    fn clone(self: &Circle) -> Circle
-    {
-        let mut circle: Circle = Circle{
-            angle: self.angle,
-            offset: self.offset,
-            delta_angle: self.delta_angle,
-            delta_offset: self.delta_offset,
-            x: self.x,
-            y: self.y,
-        };
-
-        return circle;
     }
 
     fn distance(self: &Circle, y:f32, x:f32) -> f32

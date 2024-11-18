@@ -1,8 +1,6 @@
 Ls-trip is a shell program, that simulates a drug trip every time you mistype "ls" for "lsd" in the terminal, but it can also be activated with the "ls-trip" command. 
 
-Usage: lsd/ls-trip <flag> [...]
-
-Avilable flags:
+Avilable options:
     -h, --help              print this menu
     -l, --list              list drug trip types
     -t, --type              drug trip type name

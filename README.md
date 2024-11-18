@@ -11,7 +11,7 @@ This program's binary is called lsd, which means it's mutually exclusive with th
 Because this project is in developement, there are no pre-made packages, so you'll need to build it on your own.
 To install it ensure you have cargo installed and avilable as root, and then use these commands:
 ```
-git clone https://github.com/WitHol/ls-trip/tree/release
+git clone https://github.com/WitHol/ls-trip
 git checkout
 cargo build --release
 cp target/release/ls-trip /usr/local/bin/ls-trip

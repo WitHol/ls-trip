@@ -25,7 +25,6 @@ To update:
 (at the top of the repo)
 git pull
 cargo build --release
-rm -f /usr/local/bin/lsd /usr/local/bin/ls-trip
+rm -f /usr/local/bin/ls-trip
 cp target/release/ls-trip /usr/local/bin/ls-trip
-ln -sf /usr/local/bin/lsd /usr/local/bin/ls-trip
 ```

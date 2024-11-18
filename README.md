@@ -14,7 +14,7 @@ To install it ensure you have cargo installed and avilable as root, and then use
 git clone https://github.com/WitHol/ls-trip
 cargo build --release
 cp target/release/ls-trip /usr/local/bin/ls-trip
-ln -sf /usr/local/bin/lsd /usr/local/bin/ls-trip
+ln -s /usr/local/bin/ls-trip /usr/local/bin/lsd
 ```
 In order to uninstall it:
 ```

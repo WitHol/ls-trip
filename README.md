@@ -12,7 +12,6 @@ Because this project is in developement, there are no pre-made packages, so you'
 To install it ensure you have cargo installed and avilable as root, and then use these commands:
 ```
 git clone https://github.com/WitHol/ls-trip
-git checkout
 cargo build --release
 cp target/release/ls-trip /usr/local/bin/ls-trip
 ln -sf /usr/local/bin/lsd /usr/local/bin/ls-trip

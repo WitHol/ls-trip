@@ -1,5 +1,4 @@
--
-This is a release branch, which means it is sometimes behind the master, but is much less likely to contain errors
+**This is a release branch, which means it is sometimes behind the master, but is much less likely to contain errors**
 -
 **ls-trip**
 -

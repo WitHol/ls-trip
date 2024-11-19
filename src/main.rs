@@ -1,30 +1,20 @@
-use std::io::Read;
-
 use crate::shared::*;
 use crate::circles::*;
 
 mod circles;
 mod shared;
+mod help;
 
 fn main()
 {
     let args: Vec<String> = std::env::args().collect();
-    let mut duration: f32 = 5.0;
+    let mut duration: f32 = 10.0;
     let mut no_stop: bool = false;
 
     // Checking the flags
     if args.contains(&String::from("--help")) || args.contains(&String::from("-h"))
     {
-        match std::fs::File::open("/home/withol/projects/ls-trip/src/assets/help.txt"){
-            Ok(mut file) => {
-                let mut contents = String::new();
-                file.read_to_string(&mut contents)
-                    .expect("Error reading the help file");
-                println!("{}", contents);
-            }
-
-            Err(err) => eprintln!("Error opening the help file: {}", err)
-        }
+        print!("{:}", help::HELP());
         return;
     }
 

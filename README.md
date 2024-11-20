@@ -9,22 +9,20 @@ This program's binary is called lsd, which means it's mutually exclusive with th
 **Installation**
 -
 Because this project is in developement, there are no pre-made packages, so you'll need to build it on your own.
-To install it ensure you have cargo installed and avilable as root, and then use these commands:
+To install it ensure you have cargo installed and avilable as root and use make.
+
+To install ls-trip:
 ```
 git clone https://github.com/WitHol/ls-trip
-cargo build --release
-cp target/release/ls-trip /usr/local/bin/ls-trip
-ln -s /usr/local/bin/ls-trip /usr/local/bin/lsd
+cd ls-trip
+make
+make install
 ```
-In order to uninstall it:
+To uninstall:
 ```
-rm -f /usr/local/bin/lsd /usr/local/bin/ls-trip
+make uninstall
 ```
 To update:
 ```
-(at the top of the repo)
-git pull
-cargo build --release
-rm -f /usr/local/bin/ls-trip
-cp target/release/ls-trip /usr/local/bin/ls-trip
+make update
 ```

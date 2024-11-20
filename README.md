@@ -26,4 +26,5 @@ make uninstall
 To update:
 ```
 make update
+make install
 ```

@@ -32,6 +32,3 @@ update:
 
 	@echo "compiling the project..."
 	@cargo build --release
-
-	@echo "copying the new executable to /usr/local/bin/ls-trip..."
-	@cp -f target/release/ls-trip /usr/local/bin/ls-trip

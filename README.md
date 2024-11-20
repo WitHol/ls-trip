@@ -4,7 +4,7 @@ Ls-trip is a shell program, that simulates a drug trip every time you mistype "l
 
 **Warning**
 -
-This program's binary is called lsd, which means it's mutually exclusive with the LSD (LSDeluxe) utility: https://github.com/lsd-rs/lsd.
+This program creates symlinks /usr/local/bin/lsd to its binary, which means if you have lsd (https://github.com/lsd-rs/lsd) installed, they will interfere with each other. In that case it is recommended, that you remove the symlink created by ls-trip, or you rename the lsd binary to something else.
 
 **Installation**
 -

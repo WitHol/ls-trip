@@ -9,7 +9,7 @@ This program creates symlinks /usr/local/bin/lsd to its binary, which means if y
 **Installation**
 -
 Because this project is in developement, there are no pre-made packages, so you'll need to build it on your own.
-To install it ensure you have cargo installed and avilable as root and use make.
+In order to install it, ensure you have make cargo installed and avilable as root.
 
 To install ls-trip:
 ```

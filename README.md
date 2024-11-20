@@ -8,6 +8,7 @@ This program creates a symlink at /usr/local/bin/lsd to its binary, which means 
 
 **Installation**
 -
+At the moment this program is only avilable on Linux.
 Because this project is in developement, there are no pre-made packages, so you'll need to build it on your own.
 In order to install it, ensure you have make cargo installed and avilable as root.
 

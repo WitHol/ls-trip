@@ -6,7 +6,7 @@ install:
 	@if [ -e "/usr/local/bin/ls-trip" ]; then																				\
 		echo "could not create an executable at /usr/local/bin/ls-trip, because said file already exists";					\
 	else																													\
-		cp target/release/ls-trip /usr/local/bin/ls-trip;																		\
+		cp target/release/ls-trip /usr/local/bin/ls-trip;																	\
 		echo "linking /usr/local/bin/lsd to /usr/local/bin/ls-trip...";														\
 		if [ -e "/usr/local/bin/lsd" ]; then																				\
 			echo "a file /usr/local/bin/lsd exists, so a symlink of that name won't be created";							\

@@ -1,4 +1,4 @@
-# ls-trip
+<img src=github.com/WitHol/ls-trip/.github/logo.scg>
 
 Ls-trip is a shell program, that simulates a drug trip every time you mistype "ls" for "lsd" in the terminal. It can also be activated with the "ls-trip" command.
 

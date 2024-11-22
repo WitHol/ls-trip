@@ -14,36 +14,30 @@ fn main()
     let mut no_stop: bool = false;
 
     // Checking the flags
-    // --help -h
-    if args.contains(&String::from("--help")) || args.contains(&String::from("-h"))
+    let mut i: usize = 1;
+    while i < args.len()
     {
-        print!("{:}", HELP());
-        return;
-    }
-    // --list -l
-    if args.contains(&String::from("--list")) || args.contains(&String::from("-l"))
-    {
-        // Placeholder, this will be completly redone
-        println!("Avilable drug trip types: ");
-        println!("  1. circles");
+        match args[i].as_str()
+        {
+            "--help" => { print!("{}", HELP()); std::process::exit(0); }
+            "-h" => { print!("{}", HELP()); std::process::exit(0); }
 
-        return;
-    }
-    // --no-cancel -c
-    if args.contains(&String::from("--no-cancle")) || args.contains(&String::from("-c"))
-    {
-        no_stop = true;
-    }
-    // --duration -d
-    if args.contains(&String::from("--duration"))
-    {
-        duration = args[args.iter().position(|a| a == "--duration").unwrap() + 1]
-            .trim().parse().expect("Wrong duration!");
-    }
-    else if args.contains(&String::from("-d"))
-    {
-        duration = args[args.iter().position(|a| a == "-d").unwrap() + 1]
-            .trim().parse().expect("Wrong duration!");
+            "--list" => { println!("Avilable drug trip types: \n  1. circles"); std::process::exit(0); } // Placeholder
+            "-l" => { println!("Avilable drug trip types: \n  1. circles"); std::process::exit(0); }
+
+            "--no-cancel" => { no_stop = true; }
+            "--c" => { no_stop = true; }
+
+            "--duration" => { duration = args[i+1].parse().expect("wrong duration"); i += 1 }
+            "-d" => { duration = args[i+1].parse().expect("wrong duration"); i += 1}
+
+            _ => {
+                println!("wrong flag: {}", args[i]);
+                std::process::exit(1);
+            }
+        };
+
+        i += 1;
     }
 
     // Setting things up

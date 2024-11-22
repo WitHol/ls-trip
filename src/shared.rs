@@ -1,3 +1,4 @@
+// Custom colors configuration
 pub fn colors_setup()
 {
     ncurses::init_color(11, 0x00, 0xbc, 0xd4); // Aqua
@@ -26,3 +27,20 @@ pub const PAIR_MAGENTA: i16 = 5;
 pub const PAIR_ORANGE: i16 = 6;
 pub const PAIR_CYAN: i16 = 7;
 pub const PAIR_BLUE: i16 = 8;
+
+
+// The only purpose of this function is to hold the help message
+pub fn HELP() -> String
+{
+String::from("
+Simulate a drug trip whenever you mistype ls for lsd
+Usage: lsd/ls-trip <flag> [...]
+
+Avilable flags:
+    -h, --help              print this menu
+    -l, --list              list drug trip types
+    -t, --type              drug trip type name
+    -T, --type-number       drug trip type number
+    -d, --duration          duration of the drug trip in seconds
+")
+}

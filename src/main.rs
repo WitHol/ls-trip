@@ -1,23 +1,26 @@
+// This is the main source file
+
 use crate::shared::*;
 use crate::circles::*;
 
 mod circles;
 mod shared;
-mod help;
 
 fn main()
 {
+    // Preparation
     let args: Vec<String> = std::env::args().collect();
     let mut duration: f32 = 10.0;
     let mut no_stop: bool = false;
 
     // Checking the flags
+    // --help -h
     if args.contains(&String::from("--help")) || args.contains(&String::from("-h"))
     {
-        print!("{:}", help::HELP());
+        print!("{:}", HELP());
         return;
     }
-
+    // --list -l
     if args.contains(&String::from("--list")) || args.contains(&String::from("-l"))
     {
         // Placeholder, this will be completly redone
@@ -26,12 +29,12 @@ fn main()
 
         return;
     }
-
+    // --no-cancel -c
     if args.contains(&String::from("--no-cancle")) || args.contains(&String::from("-c"))
     {
         no_stop = true;
     }
-
+    // --duration -d
     if args.contains(&String::from("--duration"))
     {
         duration = args[args.iter().position(|a| a == "--duration").unwrap() + 1]
@@ -47,7 +50,7 @@ fn main()
     ncurses::initscr();
     ncurses::noecho();
     ncurses::curs_set(ncurses::CURSOR_VISIBILITY::CURSOR_INVISIBLE);
-    if no_stop { ncurses::raw(); } else {ncurses::cbreak();}
+    if no_stop { ncurses::raw(); } else {ncurses::cbreak();} // If --no-cancel -c flag was used change input mode to raw
     ncurses::start_color();
     colors_setup(); // From shared.rs
 

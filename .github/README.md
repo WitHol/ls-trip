@@ -2,15 +2,19 @@
   <img src=logo.svg width=50% height=auto>
 </div>
 
-Ls-trip is a shell program, that simulates a drug trip every time you mistype "ls" for "lsd" in the terminal. It can also be activated with the "ls-trip" command.
+Ls-trip is a joke shell utility, that simulates a drug trip every time you mistype "ls" for "lsd". It can also be activated with the "ls-trip" command.
 
-## Warning
+# Installation
+This program is currently only avilable on Linux.
+Since ls-trip is in developement, there are no pre-made packages, so the only way to install it, is to build it from source.
+
+### Warning
 Ls-trip creates a symlink at /usr/bin/lsd (/usr/local/bin/lsd if you build from source), which means it will interfere with lsd (https://github.com/lsd-rs/lsd).
 
-## Installation
-At the moment this utility is only avilable for Linux.
-Because this project is in developement, there are no pre-made packages, so you'll need to build it on your own.
-In order to install it, you need cargo and make installed and avilable as root.
+### Building from source
+Requrements:
+- make
+- cargo (make sure it is usable as root)
 
 To install ls-trip:
 ```

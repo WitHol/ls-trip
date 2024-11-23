@@ -19,17 +19,35 @@ fn main()
     {
         match args[i].as_str()
         {
-            "--help" => { print!("{}", HELP()); std::process::exit(0); }
-            "-h" => { print!("{}", HELP()); std::process::exit(0); }
+            "--help" | "-h" => { 
+                print!("{}", HELP()); std::process::exit(0); 
+            }
 
-            "--list" => { println!("Avilable drug trip types: \n  1. circles"); std::process::exit(0); } // Placeholder
-            "-l" => { println!("Avilable drug trip types: \n  1. circles"); std::process::exit(0); }
+            "--list" | "-l" => {  // Placeholder
+                println!("Avilable drug trip types: \n  1. circles"); 
+                std::process::exit(0); 
+            }
 
-            "--no-cancel" => { no_stop = true; }
-            "--c" => { no_stop = true; }
+            "--no-cancel" | "-c" => { 
+                no_stop = true; 
+            }
 
-            "--duration" => { duration = args[i+1].parse().expect("wrong duration"); i += 1 }
-            "-d" => { duration = args[i+1].parse().expect("wrong duration"); i += 1}
+            "--duration" | "-d" => {
+                if i == args.len()-1 
+                { 
+                    println!("no duration provided");
+                    std::process::exit(1);
+                }
+                duration = match args[i+1].parse()
+                { 
+                    Ok(T) => {T} 
+                    Err(_) => {
+                        println!("wrong duration: {}", args[i+1]);
+                        std::process::exit(1);
+                    }
+                };
+                i += 1;
+            }
 
             _ => {
                 println!("wrong flag: {}", args[i]);

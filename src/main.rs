@@ -9,9 +9,9 @@ mod shared;
 fn main()
 {
     // Preparation
-    let args: Vec<String> = std::env::args().collect();
-    let mut duration: f32 = 10.0;
-    let mut no_stop: bool = false;
+    let args: Vec<String> = std::env::args().collect(); // Arguments
+    let mut duration: f32 = 10.0; // The duration of the drug trip
+    let mut no_stop: bool = false; // Whether or not to allow stopping the program with ctrl+c
 
     // Checking the flags
     let mut i: usize = 1;
@@ -23,8 +23,8 @@ fn main()
                 print!("{}", HELP()); std::process::exit(0); 
             }
 
-            "--list" | "-l" => {  // Placeholder
-                println!("Avilable drug trip types: \n  1. circles"); 
+            "--list" | "-l" => {
+                println!("Avilable drug trip types: \n  1. circles"); // Placeholder
                 std::process::exit(0); 
             }
 
@@ -60,9 +60,9 @@ fn main()
 
     // Setting things up
     ncurses::initscr();
-    ncurses::noecho();
     ncurses::curs_set(ncurses::CURSOR_VISIBILITY::CURSOR_INVISIBLE);
     if no_stop { ncurses::raw(); } else {ncurses::cbreak();} // If --no-cancel -c flag was used change input mode to raw
+    ncurses::noecho();
     ncurses::start_color();
     colors_setup(); // From shared.rs
 

@@ -2,17 +2,28 @@ all:
 	@cargo build --release
 
 install:
-	@echo "copying the executable to /usr/local/bin/ls-trip..."
+	@echo "copying the target/release/ls-trip to /usr/local/bin/ls-trip..."
 	@if [ -e "/usr/local/bin/ls-trip" ]; then																				\
-		echo "could not create an executable at /usr/local/bin/ls-trip, because said file already exists";					\
+		echo "file /usr/local/bin/ls-trip already exists, do you want to replace it? [y/n]";								\
+		read response;																										\
+		if [ $response = "y" ] || [ $response = "Y" ]; then																	\
+			cp -f target/release/ls-trip /usr/local/bin/ls-trip;															\
+			echo "copied target/release/ls-trip to /usr/local/bin/ls-trip";													\
+		fi																													\
 	else																													\
 		cp target/release/ls-trip /usr/local/bin/ls-trip;																	\
-		echo "linking /usr/local/bin/lsd to /usr/local/bin/ls-trip...";														\
-		if [ -e "/usr/local/bin/lsd" ]; then																				\
-			echo "a file /usr/local/bin/lsd exists, so a symlink of that name won't be created";							\
-		else																												\
-			ln -s /usr/local/bin/ls-trip /usr/local/bin/lsd;																\
+	fi
+
+	@echo "linking /usr/local/bin/lsd to /usr/local/bin/ls-trip..."
+	@if [ -e "/usr/local/bin/lsd" ]; then																					\
+		echo "file /usr/local/bin/lsd already exists, do you want to replace it? [y/n]";									\
+		read response;																										\
+		if [ $response = "y" ] || [ $response = "Y" ]; then																	\
+			cp -f target/release/ls-trip /usr/local/bin/ls-trip;															\
+			echo "linked /usr/local/bin/lsd to /usr/local/bin/ls-trip";														\
 		fi																													\
+	else																													\
+		cp target/release/ls-trip /usr/local/bin/ls-trip;																	\
 	fi
 
 uninstall:

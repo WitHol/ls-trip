@@ -9,7 +9,7 @@ This program is currently only avilable on Linux.
 Since ls-trip is in developement, there are no pre-made packages, so the only way to install it, is to build it from source.
 
 ### Warning
-Ls-trip creates a symlink at /usr/bin/lsd (/usr/local/bin/lsd if you build from source), which means it will interfere with lsd (https://github.com/lsd-rs/lsd).
+Ls-trip creates a symlink at /usr/bin/lsd, which means it will interfere with lsd (https://github.com/lsd-rs/lsd).
 
 ### Building from source
 Requrements:

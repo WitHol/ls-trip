@@ -1,4 +1,6 @@
 // This is the main source file
+// First, we collect the flags and iterate upon them, then we set up ncurses, 
+// execute the drug trip, which is contained inside of another file, and end the program
 
 use crate::shared::*;
 use crate::circles::*;
@@ -8,8 +10,8 @@ mod shared;
 
 fn main()
 {
-    // Preparation
-    let args: Vec<String> = std::env::args().collect(); // Arguments
+    // Preparation (these will be used later)
+    let args: Vec<String> = std::env::args().collect(); // Collecting the arguments
     let mut duration: f32 = 10.0; // The duration of the drug trip
     let mut no_stop: bool = false; // Whether or not to allow stopping the program with ctrl+c
 
@@ -70,5 +72,6 @@ fn main()
 
     // Closing the window
     ncurses::endwin();
+    std::process::exit(0);
 }
 

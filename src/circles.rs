@@ -1,11 +1,14 @@
 // This file contains functions used to create the "circles" drug trip type
+// The only thing, that should be used outside of this file is the circles() function,
+// everyting else is only used here
 
 use rand::Rng;
 use crate::shared::*;
 
 extern crate rand;
 
-// The main function
+// The main function, upon being called it creates the "circles" drug trip, which lasts for
+// a given amount of seconds and ends. This function does not initialize or end the ncurses window itself.
 pub fn circles(mut duration: f32)
 {
     let mut circles: Vec<Circle> = vec![];
@@ -72,7 +75,7 @@ fn render_circles(circles: &Vec<Circle>)
     ncurses::refresh();
 }
 
-// A function, that calls tick() functins for all the circles
+// A function, that calls tick() for all the circles
 fn tick_circles(circles: &mut Vec<Circle>, delta_time: &f32)
 {
     for circle in circles.iter_mut()
@@ -81,14 +84,14 @@ fn tick_circles(circles: &mut Vec<Circle>, delta_time: &f32)
     }
 }
 
-// A function for converting unit position into a terminal one
+// A function for converting an accual position in the terminal into unit one
 fn unit_pos(y: i16, x: i16) -> (f32, f32)
 {
     return (y as f32/ncurses::LINES() as f32-0.5, x as f32/ncurses::COLS() as f32-0.5);
 }
 
 // The circle struct with implementations of the functions
-// Everthing is measured using unit terminal dimentions, (0.0) is in the top-left corner
+// Everthing is measured using unit terminal dimentions, (-1, -1) is in the top-left corner, (1,1) is bottom right
 struct Circle
 {
     angle: f32,
@@ -100,7 +103,7 @@ struct Circle
 }
 impl Circle
 {
-    // A function for creating a new circle
+    // A function for creating a new circle with randomized parameters
     fn new() -> Circle
     {
         let mut rng = rand::thread_rng();
@@ -119,7 +122,7 @@ impl Circle
         return circle;
     }
     
-    // A function for updating the position of a circle
+    // A function for updating the position of a circle, it does not output anything, it only changes struct values
     fn tick(self: &mut Circle, delta_time: &f32)
     {
         if rand::thread_rng().gen_range(0.0..1.0) < 60.0*delta_time

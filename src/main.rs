@@ -51,6 +51,11 @@ fn main()
                 i += 1;
             }
 
+            // --type and --type-number are not really implemented yet, since there is only one drug trip type
+            "--type" | "-t" => {}
+
+            "--type-number" | "-T" => {}
+
             _ => {
                 println!("wrong flag: {}", args[i]);
                 std::process::exit(1);

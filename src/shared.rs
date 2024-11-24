@@ -42,5 +42,6 @@ Avilable flags:
     -t, --type              drug trip type name
     -T, --type-number       drug trip type number
     -d, --duration          duration of the drug trip in seconds
+    -c, --no-cancel         disable the user's ability to stop the program with ctrl-c
 ")
 }

@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
-   sodipodi:docname="drawing.svg"
+   sodipodi:docname="logo.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,14 +24,14 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      inkscape:zoom="0.125"
-     inkscape:cx="3080"
-     inkscape:cy="808"
-     inkscape:window-width="1892"
-     inkscape:window-height="1011"
+     inkscape:cx="1160"
+     inkscape:cy="804"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="svg1" />
   <defs
      id="defs1">
     <inkscape:path-effect
@@ -73,17 +73,10 @@
      id="layer1"
      transform="matrix(1.0637283,0,0,1.0637283,-65.49486,9.0603673)"
      style="stroke:#d9d9d9;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1">
-    <text
-       xml:space="preserve"
+    <path
+       id="text4"
        style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:4.70171;stroke-dasharray:none;stroke-opacity:1"
-       x="414.25046"
-       y="366.45621"
-       id="text4"><tspan
-         sodipodi:role="line"
-         id="tspan4"
-         x="414.25046"
-         y="366.45621"
-         style="fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:4.70171;stroke-dasharray:none;stroke-opacity:1">D</tspan></text>
+       d="M 316.30911 188.83433 C 298.79366 188.83433 284.94077 193.29255 274.74996 202.20951 C 264.71839 211.12646 259.70265 223.38755 259.70265 238.99222 C 259.70265 251.73073 263.68313 262.71769 271.6447 271.9531 C 279.7655 281.02929 290.67316 287.15959 304.36706 290.34422 L 325.62442 295.36015 C 331.19751 296.634 335.41687 299.26106 338.28303 303.24185 C 341.1492 307.0634 342.5824 311.44232 342.5824 316.3785 C 342.5824 322.58852 340.35329 327.60426 335.89482 331.42581 C 331.59557 335.08813 325.54457 336.9193 317.74223 336.9193 C 309.78067 336.9193 303.4115 335.00835 298.63456 331.1868 C 294.01685 327.20601 291.70795 321.9514 291.70795 315.42292 L 256.8364 315.42292 C 256.8364 326.09142 259.30438 335.40679 264.24055 343.36835 C 269.33595 351.17069 276.42172 357.2212 285.49791 361.52045 C 294.73333 365.8197 305.48142 367.96951 317.74223 367.96951 C 330.00305 367.96951 340.59205 365.89948 349.50901 361.75947 C 358.5852 357.46022 365.51188 351.40922 370.28882 343.60688 C 375.225 335.80455 377.69298 326.72853 377.69298 316.3785 C 377.69298 302.20691 373.6327 290.10539 365.51191 280.07382 C 357.55034 269.88301 346.72246 263.27498 333.02857 260.24958 L 311.05464 255.23365 C 300.06768 252.68594 294.5742 246.87381 294.5742 237.79763 C 294.5742 232.22453 296.48515 227.76631 300.3067 224.42245 C 304.12825 221.07859 309.46216 219.40651 316.30911 219.40651 C 323.31529 219.40651 328.80877 221.15837 332.78955 224.66146 C 336.77033 228.00532 338.76106 232.70241 338.76106 238.7532 L 373.63262 238.7532 C 373.63262 223.467 368.45779 211.36548 358.10775 202.44852 C 347.75772 193.37234 333.82456 188.83433 316.30911 188.83433 z M 129.76978 191.22255 L 129.76978 365.58081 L 236.05658 365.58081 L 236.05658 333.33648 L 165.59691 333.33648 L 165.59691 191.22255 L 129.76978 191.22255 z M 429.29759 192.09797 L 429.29759 366.45623 L 485.90454 366.45623 C 498.00612 366.45623 508.51534 364.14733 517.4323 359.52962 C 526.50849 354.75268 533.51496 348.14465 538.45113 339.70539 C 543.54653 331.26612 546.09381 321.4735 546.09381 310.32731 L 546.09381 247.98787 C 546.09381 236.68244 543.54653 226.88982 538.45113 218.60979 C 533.51496 210.17053 526.50849 203.64228 517.4323 199.02457 C 508.51534 194.40686 498.00612 192.09797 485.90454 192.09797 L 429.29759 192.09797 z M 465.12472 224.34229 L 485.90454 224.34229 C 493.06995 224.34229 498.88208 226.5714 503.34056 231.02988 C 507.95827 235.32912 510.26716 240.98169 510.26716 247.98787 L 510.26716 310.32731 C 510.26716 317.33349 507.95827 323.06584 503.34056 327.52432 C 498.88208 331.98279 493.06995 334.2119 485.90454 334.2119 L 465.12472 334.2119 L 465.12472 224.34229 z " />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#3c6e71;fill-opacity:1;stroke:#d9d9d9;stroke-width:7.05256;stroke-dasharray:none;stroke-opacity:1"
@@ -96,17 +89,5 @@
          x="375.55899"
          y="366.45621"
          style="stroke-width:7.05256">Trip</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:7.05256;stroke-dasharray:none;stroke-opacity:1"
-       x="102.30229"
-       y="365.58096"
-       id="text1"
-       inkscape:label="text1"><tspan
-         sodipodi:role="line"
-         id="tspan1"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:7.05256;stroke-dasharray:none;stroke-opacity:1"
-         x="102.30229"
-         y="365.58096">LS</tspan></text>
   </g>
 </svg>

@@ -1,5 +1,5 @@
 <div align=center>
-  <img src=logo.svg width=50% height=auto>
+  <img src=logo.png width=50% height=auto>
 </div>
 
 Ls-trip is a joke shell utility, that simulates a drug trip every time you mistype "ls" for "lsd". It can also be activated with the "ls-trip" command.

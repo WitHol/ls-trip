@@ -30,7 +30,7 @@ impl Center
         let mut rng = rand::thread_rng();
 
         let mut cuts = Vec::<f32>::new();
-        let cut_count = rng.gen_range(5..9);
+        let cut_count = rng.gen_range(5..8);
         for i in 0..cut_count
         {
             cuts.push(i as f32 * PI*2.0 / cut_count as f32);

@@ -26,11 +26,11 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
-     inkscape:zoom="0.18846141"
-     inkscape:cx="2255.1036"
-     inkscape:cy="1435.3071"
-     inkscape:window-width="1920"
-     inkscape:window-height="1080"
+     inkscape:zoom="0.125"
+     inkscape:cx="2120"
+     inkscape:cy="2728"
+     inkscape:window-width="1290"
+     inkscape:window-height="761"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -76,18 +76,20 @@
      id="layer1"
      transform="matrix(1.0637283,0,0,1.0637283,-65.49486,9.0603673)"
      style="stroke:#d9d9d9;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1">
-    <path
-       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:4.70171;stroke-dasharray:none;stroke-opacity:1"
-       d="m 429.29759,192.09797 v 174.35826 h 56.60695 c 12.10158,0 22.6108,-2.3089 31.52776,-6.92661 9.07619,-4.77694 16.08266,-11.38497 21.01883,-19.82423 5.0954,-8.43927 7.64268,-18.23189 7.64268,-29.37808 v -62.33944 c 0,-11.30543 -2.54728,-21.09805 -7.64268,-29.37808 -4.93617,-8.43926 -11.94264,-14.96751 -21.01883,-19.58522 -8.91696,-4.61771 -19.42618,-6.9266 -31.52776,-6.9266 z m 35.82713,32.24432 h 20.77982 c 7.16541,0 12.97754,2.22911 17.43602,6.68759 4.61771,4.29924 6.9266,9.95181 6.9266,16.95799 v 62.33944 c 0,7.00618 -2.30889,12.73853 -6.9266,17.19701 -4.45848,4.45847 -10.27061,6.68758 -17.43602,6.68758 h -20.77982 z"
-       id="path4" />
-    <path
-       id="path3"
-       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:7.0525528;stroke-dasharray:none;stroke-opacity:1"
-       d="m 316.30911,188.83433 c -17.51545,0 -31.36834,4.45822 -41.55915,13.37518 -10.03157,8.91695 -15.04731,21.17804 -15.04731,36.78271 0,12.73851 3.98048,23.72547 11.94205,32.96088 8.1208,9.07619 19.02846,15.20649 32.72236,18.39112 l 21.25736,5.01593 c 5.57309,1.27385 9.79245,3.90091 12.65861,7.8817 2.86617,3.82155 4.29937,8.20047 4.29937,13.13665 0,6.21002 -2.22911,11.22576 -6.68758,15.04731 -4.29925,3.66232 -10.35025,5.49349 -18.15259,5.49349 -7.96156,0 -14.33073,-1.91095 -19.10767,-5.7325 -4.61771,-3.98079 -6.92661,-9.2354 -6.92661,-15.76388 H 256.8364 c 0,10.6685 2.46798,19.98387 7.40415,27.94543 5.0954,7.80234 12.18117,13.85285 21.25736,18.1521 9.23542,4.29925 19.98351,6.44906 32.24432,6.44906 12.26082,0 22.84982,-2.07003 31.76678,-6.21004 9.07619,-4.29925 16.00287,-10.35025 20.77981,-18.15259 4.93618,-7.80233 7.40416,-16.87835 7.40416,-27.22838 0,-14.17159 -4.06028,-26.27311 -12.18107,-36.30468 -7.96157,-10.19081 -18.78945,-16.79884 -32.48334,-19.82424 l -21.97393,-5.01593 c -10.98696,-2.54771 -16.48044,-8.35984 -16.48044,-17.43602 0,-5.5731 1.91095,-10.03132 5.7325,-13.37518 3.82155,-3.34386 9.15546,-5.01594 16.00241,-5.01594 7.00618,0 12.49966,1.75186 16.48044,5.25495 3.98078,3.34386 5.97151,8.04095 5.97151,14.09174 h 34.87156 c 0,-15.2862 -5.17483,-27.38772 -15.52487,-36.30468 -10.35003,-9.07618 -24.28319,-13.61419 -41.79864,-13.61419 z m -186.53933,2.38822 v 174.35826 h 106.2868 V 333.33648 H 165.59691 V 191.22255 Z"
-       sodipodi:nodetypes="scsccccscscccccsccscccsssccccsccccccc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#3c6e71;fill-opacity:1;stroke:#d9d9d9;stroke-width:7.0525528;stroke-dasharray:none;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:4.70171;stroke-dasharray:none;stroke-opacity:1"
+       x="414.25046"
+       y="366.45621"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         x="414.25046"
+         y="366.45621"
+         style="fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:4.70171;stroke-dasharray:none;stroke-opacity:1">D</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#3c6e71;fill-opacity:1;stroke:#d9d9d9;stroke-width:7.05256;stroke-dasharray:none;stroke-opacity:1"
        x="375.55899"
        y="366.45621"
        id="text2"
@@ -96,6 +98,18 @@
          id="tspan15"
          x="375.55899"
          y="366.45621"
-         style="stroke-width:7.0525528;stroke-dasharray:none">Trip</tspan></text>
+         style="stroke-width:7.05256">Trip</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:7.05256;stroke-dasharray:none;stroke-opacity:1"
+       x="102.30229"
+       y="365.58096"
+       id="text1"
+       inkscape:label="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:238.847px;font-family:'JetBrainsMono Nerd Font';-inkscape-font-specification:'JetBrainsMono Nerd Font, Ultra-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#284b63;fill-opacity:1;stroke:#d9d9d9;stroke-width:7.05256;stroke-dasharray:none;stroke-opacity:1"
+         x="102.30229"
+         y="365.58096">LS</tspan></text>
   </g>
 </svg>

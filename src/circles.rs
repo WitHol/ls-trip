@@ -39,12 +39,12 @@ pub fn circles(mut duration: f32)
 fn render_circles(circles: &Vec<Circle>)
 {
 
-    for y in 0..ncurses::LINES() as i16
+    for y in 0..ncurses::LINES()
     {
-        for x in 0..ncurses::COLS() as i16
+        for x in 0..ncurses::COLS()
         {
-            ncurses::mv(y as i32, x as i32);
-            let (unity,unitx) = unit_pos(y, x);
+            ncurses::mv(y, x);
+            let (unity,unitx) = to_unit(y, x);
             let mut level: f32 = 0.0;
 
             for circle in circles.iter()
@@ -67,7 +67,7 @@ fn render_circles(circles: &Vec<Circle>)
             };
 
             ncurses::attron(ncurses::COLOR_PAIR(pair));
-            ncurses::addch('#' as ncurses::ll::chtype); // #
+            ncurses::addch('#' as ncurses::ll::chtype);
             ncurses::attroff(ncurses::COLOR_PAIR(pair));
         }
     }
@@ -82,12 +82,6 @@ fn tick_circles(circles: &mut Vec<Circle>, delta_time: &f32)
     {
         circle.tick(delta_time);
     }
-}
-
-// A function for converting an accual position in the terminal into unit one
-fn unit_pos(y: i16, x: i16) -> (f32, f32)
-{
-    return (y as f32/ncurses::LINES() as f32-0.5, x as f32/ncurses::COLS() as f32-0.5);
 }
 
 // The circle struct with implementations of the functions

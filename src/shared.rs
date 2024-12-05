@@ -29,6 +29,23 @@ pub const PAIR_CYAN: i16 = 7;
 pub const PAIR_BLUE: i16 = 8;
 
 
+// A function for calculation a distance of a point from center
+pub fn to_unit(y: i32, x: i32) -> (f32, f32)
+{
+    return (y as f32/ncurses::LINES() as f32-0.5, x as f32/ncurses::COLS() as f32-0.5);
+}
+
+
+pub fn angular_distance(a: &f32, b: &f32) -> f32
+{
+    let diff = (a - b).abs();
+    return match diff > std::f32::consts::PI{
+        false => diff,
+        true => std::f32::consts::PI*2.0 - diff,
+    }
+}
+
+
 // The only purpose of this function is to hold the help message
 pub fn HELP() -> String
 {

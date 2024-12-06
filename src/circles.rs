@@ -129,7 +129,7 @@ impl Circle
             if self.offset.abs() < 0.1 { self.delta_offset += 0.1 }
             self.delta_offset *= 0.9;
         }
-        
+
         self.angle += self.delta_angle * delta_time;
         self.offset += self.delta_offset * delta_time;
         

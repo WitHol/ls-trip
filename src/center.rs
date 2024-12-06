@@ -4,21 +4,19 @@ use std::f32::consts::PI;
 
 extern crate rand;
 
-pub fn center(mut duration: f32)
+pub fn center(duration: f32)
 {
     let mut center = Center::new();
 
     // Preparing a variable for calculating delta time
-    let mut previous= std::time::Instant::now();
+    let start = std::time::Instant::now();
+    let mut elapsed_time: f32 = 0.0;
    
-    while duration > 0.0
+    while duration > elapsed_time
     {
-        let now = std::time::Instant::now();
-        let delta_time: f32 = now.duration_since(previous).as_secs_f32();
-        previous = now;
-        duration -= delta_time;
+        elapsed_time = std::time::Instant::now().duration_since(start).as_secs_f32();
 
-        center.tick(delta_time);
+        center.tick(elapsed_time);
         center.render();
     }
 }
@@ -38,12 +36,12 @@ impl Center
 
         Center{
             cuts: cuts,
+            cut: rng.gen_range(0.3..0.7),
+            compactness: rng.gen_range(12.0..18.0),
             
             rotation: 0.0,
-            cut: rng.gen_range(0.3..0.7),
             shift: 0.0,
             
-            compactness: rng.gen_range(12.0..18.0),
             delta_rotation: rng.gen_range(0.0..0.1),
             delta_shift: rng.gen_range(0.2..0.3),
         }
@@ -99,10 +97,10 @@ impl Center
         return match dir < 0.0 { true => PI*2.0 + dir, false => dir};
     }
 
-    fn tick(self: &mut Center, delta_time: f32)
+    fn tick(self: &mut Center, elapsed_time: f32)
     {
-        self.rotation += self.delta_rotation * delta_time;
-        self.shift += self.delta_shift * delta_time;
+        self.rotation = self.delta_rotation * elapsed_time;
+        self.shift = self.delta_shift * elapsed_time;
     }
 
     fn distance(self: &Center, y: &f32, x: &f32) -> f32
@@ -114,11 +112,12 @@ impl Center
 struct Center
 {
     cuts: Vec<f32>, 
-
-    shift: f32,
-    rotation: f32,
     cut: f32,
     compactness: f32,
-    delta_shift: f32,
+
     delta_rotation: f32,
+    delta_shift: f32,
+
+    rotation: f32,
+    shift: f32,
 }

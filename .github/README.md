@@ -18,7 +18,7 @@ Requrements:
 
 To install ls-trip:
 ```
-git clone https://github.com/WitHol/ls-trip
+git clone https://github.com/WitHol/ls-trip/tree/release
 cd ls-trip
 make
 make install

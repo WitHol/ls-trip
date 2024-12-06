@@ -5,11 +5,9 @@
 use rand::Rng;
 use crate::shared::*;
 
-extern crate rand;
-
 // The main function, upon being called it creates the "circles" drug trip, which lasts for
 // a given amount of seconds and ends. This function does not initialize or end the ncurses window itself.
-pub fn circles(mut duration: f32)
+pub fn main(mut duration: f32)
 {
     let mut circles: Vec<Circle> = vec![];
     let amount: i8 = rand::thread_rng().gen_range(8..13);

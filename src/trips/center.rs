@@ -2,9 +2,8 @@ use rand::Rng;
 use crate::shared::*;
 use std::f32::consts::PI;
 
-extern crate rand;
-
-pub fn center(duration: f32)
+// The main function
+pub fn main(duration: f32)
 {
     let mut center = Center::new();
 
@@ -21,8 +20,12 @@ pub fn center(duration: f32)
     }
 }
 
+// The center struct with implementations of the functions
+// Everthing is measured using unit terminal dimentions, (-1, -1) is in the top-left corner, (1,1) is bottom right
+// This is a separate struct with its own functions purely for organization purposes 
 impl Center
 {
+    // A function for creating a center (only used once)
     fn new() -> Center
     {
         let mut rng = rand::thread_rng();
@@ -47,6 +50,7 @@ impl Center
         }
     }
 
+    // A function for rendering thes
     fn render(self: &Center)
     {
         for y in 0..ncurses::LINES()
@@ -56,12 +60,12 @@ impl Center
                 ncurses::mv(y,x);
                 let (unity, unitx) = to_unit(y,x);
 
-                let mut level: f32 = self.distance(&unity, &unitx);
+                let mut level: f32 = distance(&unity, &unitx);
                 level += self.shift;
                 
                 for cut in self.cuts.iter()
                 {
-                    let dir = self.direction(&unity, &unitx);
+                    let dir = direction(&unity, &unitx);
                     let mut dist = angular_distance(cut, &dir);
                     dist = (0.4 - dist) * self.cut;
                     if dist > 0.0 { level += dist; }
@@ -91,24 +95,15 @@ impl Center
         ncurses::refresh();
     }
 
-    fn direction(self: &Center, y: &f32, x: &f32) -> f32
-    {
-        let dir = -(-x).atan2(*y);
-        return match dir < 0.0 { true => PI*2.0 + dir, false => dir};
-    }
-
+    // A functions for updating the parameters of a center
     fn tick(self: &mut Center, elapsed_time: f32)
     {
         self.rotation = self.delta_rotation * elapsed_time;
         self.shift = self.delta_shift * elapsed_time;
     }
 
-    fn distance(self: &Center, y: &f32, x: &f32) -> f32
-    {
-        return (y*y + x*x).sqrt();
-    }
-}
 
+}
 struct Center
 {
     cuts: Vec<f32>, 

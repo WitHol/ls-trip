@@ -1,4 +1,12 @@
-// Custom colors configuration
+use std::f32::consts::PI;
+
+/*
+This file contains different functions, that were needed throught the developement, but are either to general and reusable
+to put them in a file created for one, very specific functionality, or they are isolated to make the code more transparent.
+Either way, think of this file as a small library created specifically for this project
+*/
+
+// Custom ncurses colors configuration
 pub fn colors_setup()
 {
     ncurses::init_color(11, 0x00, 0xbc, 0xd4); // Aqua
@@ -29,6 +37,7 @@ pub const PAIR_CYAN: i16 = 7;
 pub const PAIR_BLUE: i16 = 8;
 
 
+
 // A function for calculation a distance of a point from center
 pub fn to_unit(y: i32, x: i32) -> (f32, f32)
 {
@@ -36,6 +45,8 @@ pub fn to_unit(y: i32, x: i32) -> (f32, f32)
 }
 
 
+
+// A function for calculating a difference between two values
 pub fn angular_distance(a: &f32, b: &f32) -> f32
 {
     let diff = (a - b).abs();
@@ -46,19 +57,35 @@ pub fn angular_distance(a: &f32, b: &f32) -> f32
 }
 
 
-// The only purpose of this function is to hold the help message
+// The only purpose of this function is to hold the help message, 
+// cuz I didn't feel like learning lifetime specifiers in static variables
 pub fn HELP() -> String
 {
-String::from("
-Simulate a drug trip whenever you mistype ls for lsd
-Usage: lsd/ls-trip <flag> [...]
+    String::from("
+    Simulate a drug trip whenever you mistype ls for lsd
+    Usage: lsd/ls-trip <flag> [...]
 
-Avilable flags:
-    -h, --help              print this menu
-    -l, --list              list drug trip types
-    -t, --type              drug trip type name
-    -T, --type-number       drug trip type number
-    -d, --duration          duration of the drug trip in seconds
-    -c, --no-cancel         disable the user's ability to stop the program with ctrl-c
-")
+    Avilable flags:
+        -h, --help              print this menu
+        -l, --list              list drug trip types
+        -t, --type              drug trip type name
+        -T, --type-number       drug trip type number
+        -d, --duration          duration of the drug trip in seconds
+        -c, --no-cancel         disable the user's ability to stop the program with ctrl-c
+    ")
+}
+
+
+// The in which a position is from (0,0), a glorified wrapper around atan2()
+pub fn direction(y: &f32, x: &f32) -> f32
+{
+    let dir = -(-x).atan2(*y);
+    return match dir < 0.0 { true => PI*2.0 + dir, false => dir};
+}
+
+
+// A distance of a point from (0,0), a pythagoreas equation
+pub fn distance(y: &f32, x: &f32) -> f32
+{
+    return (y*y + x*x).sqrt();
 }

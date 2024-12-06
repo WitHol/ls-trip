@@ -1,17 +1,17 @@
-// This is the main source file
-// First, we collect the flags and iterate upon them, then we set up ncurses, 
-// execute the drug trip, which is contained inside of another file, and end the program
+/*
+This is the main source file. It doesn't contain much code, so that you can get a high-level overview of 
+what is happening just by looking at it.
+*/
 
 use rand::Rng;
 
 use crate::shared::*;
-use crate::circles::*;
-use crate::center::*;
+use crate::trips::circles;
+use crate::trips::center;
 use std::f32::consts::PI;
 
-mod circles;
 mod shared;
-mod center;
+mod trips;
 
 fn main()
 {
@@ -21,7 +21,9 @@ fn main()
     let mut no_stop: bool = false; // Whether or not to allow stopping the program with ctrl+c
     let mut trip_type: i8 = rand::thread_rng().gen_range(0..2);
 
-    // Checking the flags
+    // Processing the flags
+    // In this ridiculously long loop, we iterate over every argument and either adjust previously defined variables,
+    // or print something to the terminal and stopping the program
     let mut i: usize = 1;
     while i < args.len()
     {
@@ -107,28 +109,27 @@ fn main()
                 std::process::exit(1);
             }
         };
-
         i += 1;
     }
 
-    // Setting things up
+    // Setting up ncurses stuff
     ncurses::initscr();
     ncurses::curs_set(ncurses::CURSOR_VISIBILITY::CURSOR_INVISIBLE);
-    if no_stop { ncurses::raw(); } else {ncurses::cbreak();} // If --no-cancel -c flag was used change input mode to raw
     ncurses::noecho();
     ncurses::start_color();
-    colors_setup(); // From shared.rs
+    if no_stop { ncurses::raw(); } else {ncurses::cbreak();} // If --no-cancel -c flag was used, change input mode to raw 
+    colors_setup(); // Defining a bunch of color groups as well as a few colors, so they are avilable later on
 
+    // The main body of this program
     if trip_type == 0
     {
-        circles(duration);
+        circles::main(duration);
     }
     else 
     {
-        center(duration);     
+        center::main(duration);
     }
 
     // Closing the window
     ncurses::endwin();
-    std::process::exit(0);
 }

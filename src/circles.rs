@@ -20,17 +20,18 @@ pub fn circles(mut duration: f32)
     }
     
     // Preparing a variable for calculating delta time
-    let mut previous= std::time::Instant::now();
-   
+    let start= std::time::Instant::now();
+    let mut delta_time: f32 = 0.0;
+    let mut elapsed_time: f32 = 0.0;
+
     while duration > 0.0
     {
-        // Calculating the delta time
-        let now = std::time::Instant::now();
-        let delta_time: f32 = now.duration_since(previous).as_secs_f32();
-        previous = now;
-        duration -= delta_time;
+        // Calculating the delta time and elapsed 
+        delta_time = elapsed_time;
+        elapsed_time = std::time::Instant::now().duration_since(start).as_secs_f32();
+        delta_time = elapsed_time - delta_time;
 
-        tick_circles(&mut circles, &delta_time);
+        tick_circles(&mut circles, &elapsed_time, &delta_time);
         render_circles(&circles);
     }
 }
@@ -76,25 +77,16 @@ fn render_circles(circles: &Vec<Circle>)
 }
 
 // A function, that calls tick() for all the circles
-fn tick_circles(circles: &mut Vec<Circle>, delta_time: &f32)
+fn tick_circles(circles: &mut Vec<Circle>, elapsed_time: &f32, delta_time: &f32)
 {
     for circle in circles.iter_mut()
     {
-        circle.tick(delta_time);
+        circle.tick(elapsed_time, delta_time);
     }
 }
 
 // The circle struct with implementations of the functions
 // Everthing is measured using unit terminal dimentions, (-1, -1) is in the top-left corner, (1,1) is bottom right
-struct Circle
-{
-    angle: f32,
-    offset: f32,
-    delta_angle: f32,
-    delta_offset: f32,
-    x: f32,
-    y: f32,
-}
 impl Circle
 {
     // A function for creating a new circle with randomized parameters
@@ -103,10 +95,10 @@ impl Circle
         let mut rng = rand::thread_rng();
 
         let mut circle: Circle = Circle{
-            angle: rng.gen_range(0.0..2.0*std::f32::consts::PI),
-            offset: rng.gen_range(0.0..0.2),
-            delta_angle: 0.0,
-            delta_offset: 0.0,
+            delta_angle: rng.gen_range(-2.0..2.0),
+            random_factor: rng.gen_range(1.0..1000.0),
+            angle: 0.0,
+            offset: 0.0,
             x: 0.0,
             y: 0.0,
         };
@@ -117,21 +109,10 @@ impl Circle
     }
     
     // A function for updating the position of a circle, it does not output anything, it only changes struct values
-    fn tick(self: &mut Circle, delta_time: &f32)
+    fn tick(self: &mut Circle, elapsed_time: &f32 , delta_time: &f32)
     {
-        if rand::thread_rng().gen_range(0.0..1.0) < 60.0*delta_time
-        {
-            self.delta_angle += rand::thread_rng().gen_range(-0.2..0.2);
-            if self.delta_angle.abs() > std::f32::consts::PI * 1.0 { self.delta_angle *= 0.9; }
-            
-            self.delta_offset += rand::thread_rng().gen_range(-0.2..0.2);
-            if self.offset.abs() > 1.0 { self.delta_offset -= 0.1 }
-            if self.offset.abs() < 0.1 { self.delta_offset += 0.1 }
-            self.delta_offset *= 0.9;
-        }
-
-        self.angle += self.delta_angle * delta_time;
-        self.offset += self.delta_offset * delta_time;
+        self.angle = elapsed_time * self.delta_angle;
+        self.offset = (elapsed_time + self.random_factor).sin() * 0.6;
         
         self.calculate_pos();
     }
@@ -148,4 +129,14 @@ impl Circle
         self.y = self.offset * self.angle.cos();
         self.x = self.offset * self.angle.sin();
     }
+}
+struct Circle
+{
+    angle: f32,
+    offset: f32,
+    delta_angle: f32,
+    x: f32,
+    y: f32,
+
+    random_factor: f32,
 }

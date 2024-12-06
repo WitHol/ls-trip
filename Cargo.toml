@@ -4,5 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-ncurses = "6.0.0"
+ncurses = "6.0"
 rand = "0.8"

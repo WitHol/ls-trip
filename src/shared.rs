@@ -1,10 +1,10 @@
-use std::f32::consts::PI;
-
 /*
 This file contains different functions, that were needed throught the developement, but are either to general and reusable
-to put them in a file created for one, very specific functionality, or they are isolated to make the code more transparent.
-Either way, think of this file as a small library created specifically for this project
+to put them in a file created for one specific functionality.
+Think of this file as a small library created specifically for this project
 */
+
+use std::f32::consts::PI;
 
 // Custom ncurses colors configuration
 pub fn colors_setup()
@@ -45,7 +45,6 @@ pub fn to_unit(y: i32, x: i32) -> (f32, f32)
 }
 
 
-
 // A function for calculating a difference between two values
 pub fn angular_distance(a: &f32, b: &f32) -> f32
 {
@@ -54,25 +53,6 @@ pub fn angular_distance(a: &f32, b: &f32) -> f32
         false => diff,
         true => std::f32::consts::PI*2.0 - diff,
     }
-}
-
-
-// The only purpose of this function is to hold the help message, 
-// cuz I didn't feel like learning lifetime specifiers in static variables
-pub fn HELP() -> String
-{
-    String::from("
-    Simulate a drug trip whenever you mistype ls for lsd
-    Usage: lsd/ls-trip <flag> [...]
-
-    Avilable flags:
-        -h, --help              print this menu
-        -l, --list              list drug trip types
-        -t, --type              drug trip type name
-        -T, --type-number       drug trip type number
-        -d, --duration          duration of the drug trip in seconds
-        -c, --no-cancel         disable the user's ability to stop the program with ctrl-c
-    ")
 }
 
 

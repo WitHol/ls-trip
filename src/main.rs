@@ -3,12 +3,13 @@ This is the main source file. It doesn't contain much code, so that you can get 
 what is happening just by looking at it.
 */
 
-use rand::Rng;
-
 use crate::shared::*;
 use crate::trips::circles;
 use crate::trips::center;
+
+use rand::Rng;
 use std::f32::consts::PI;
+use std::collections::HashMap;
 
 mod shared;
 mod trips;
@@ -21,9 +22,36 @@ fn main()
     let mut no_stop: bool = false; // Whether or not to allow stopping the program with ctrl+c
     let mut trip_type: i8 = rand::thread_rng().gen_range(0..2);
 
-    // Processing the flags
-    // In this ridiculously long loop, we iterate over every argument and either adjust previously defined variables,
-    // or print something to the terminal and stopping the program
+    // Processing the arguments, and adjusting previously defined variables according to the flags
+    process_args(&args, &mut duration, &mut no_stop, &mut trip_type);
+
+    // Setting up ncurses stuff
+    ncurses::initscr();
+    ncurses::curs_set(ncurses::CURSOR_VISIBILITY::CURSOR_INVISIBLE);
+    ncurses::noecho();
+    ncurses::start_color();
+    if no_stop { ncurses::raw(); } else {ncurses::cbreak();} // If --no-cancel -c flag was used, change input mode to raw 
+    colors_setup(); // Defining a bunch of color groups as well as a few colors, so they are avilable later on
+
+    // The main body of this program
+    if trip_type == 0
+    {
+        circles::main(duration);
+    }
+    else 
+    {
+        center::main(duration);
+    }
+
+    // Closing the window
+    ncurses::endwin();
+}
+
+
+// This function processes the arguments and adjusts the varables, according to them.
+// It can also stop the program on a wrong argument, or when a flag like -h has been provided 
+fn process_args(args: &Vec<String>, duration: &mut f32, no_stop: &mut bool, trip_type: &mut i8)
+{
     let mut i: usize = 1;
     while i < args.len()
     {
@@ -39,7 +67,7 @@ fn main()
             }
 
             "--no-cancel" | "-c" => { 
-                no_stop = true; 
+                *no_stop = true; 
             }
 
             "--duration" | "-d" => {
@@ -48,8 +76,8 @@ fn main()
                     println!("no duration provided");
                     std::process::exit(1);
                 }
-                duration = match args[i+1].parse()
-                { 
+                *duration = match args[i+1].parse()
+                {
                     Ok(T) => {T} 
                     Err(_) => {
                         println!("wrong duration: {}", args[i+1]);
@@ -66,7 +94,7 @@ fn main()
                     std::process::exit(1);
                 }
 
-                trip_type = match match args[i+1].parse::<String>()
+                *trip_type = match match args[i+1].parse::<String>()
                 { 
                     Ok(T) => T,
                     Err(_) => {
@@ -92,7 +120,7 @@ fn main()
                     std::process::exit(1);
                 }
 
-                trip_type = match args[i+1].parse()
+                *trip_type = match args[i+1].parse()
                 {
                     Ok(T) => T,
                     Err(_) => {
@@ -111,25 +139,23 @@ fn main()
         };
         i += 1;
     }
+}
 
-    // Setting up ncurses stuff
-    ncurses::initscr();
-    ncurses::curs_set(ncurses::CURSOR_VISIBILITY::CURSOR_INVISIBLE);
-    ncurses::noecho();
-    ncurses::start_color();
-    if no_stop { ncurses::raw(); } else {ncurses::cbreak();} // If --no-cancel -c flag was used, change input mode to raw 
-    colors_setup(); // Defining a bunch of color groups as well as a few colors, so they are avilable later on
 
-    // The main body of this program
-    if trip_type == 0
-    {
-        circles::main(duration);
-    }
-    else 
-    {
-        center::main(duration);
-    }
+// The only purpose of this function is to hold the help message, 
+// cuz I didn't feel like learning lifetime specifiers for static variables
+fn HELP() -> String
+{
+    String::from("
+    Simulate a drug trip whenever you mistype ls for lsd
+    Usage: lsd/ls-trip <flag> [...]
 
-    // Closing the window
-    ncurses::endwin();
+    Avilable flags:
+        -h, --help              print this menu
+        -l, --list              list drug trip types
+        -t, --type              drug trip type name
+        -T, --type-number       drug trip type number
+        -d, --duration          duration of the drug trip in seconds
+        -c, --no-cancel         disable the user's ability to stop the program with ctrl-c
+    ")
 }

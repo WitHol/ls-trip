@@ -130,7 +130,7 @@ lazy_static!{
             -T, --type-number       drug trip type number
             -d, --duration          duration of the drug trip in seconds
             -c, --no-cancel         disable the user's ability to stop the program with ctrl-c
-        ");
+    ");
 }
 
 // This is a hashmap, used to assign different trip type names with the trip numbers

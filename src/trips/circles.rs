@@ -19,17 +19,14 @@ pub fn main(mut duration: f32)
     
     // Preparing a variable for calculating delta time
     let start= std::time::Instant::now();
-    let mut delta_time: f32 = 0.0;
     let mut elapsed_time: f32 = 0.0;
 
-    while duration > 0.0
+    while duration > elapsed_time
     {
         // Calculating the delta time and elapsed 
-        delta_time = elapsed_time;
         elapsed_time = std::time::Instant::now().duration_since(start).as_secs_f32();
-        delta_time = elapsed_time - delta_time;
 
-        tick_circles(&mut circles, &elapsed_time, &delta_time);
+        tick_circles(&mut circles, &elapsed_time);
         render_circles(&circles);
     }
 }
@@ -75,11 +72,11 @@ fn render_circles(circles: &Vec<Circle>)
 }
 
 // A function, that calls tick() for all the circles
-fn tick_circles(circles: &mut Vec<Circle>, elapsed_time: &f32, delta_time: &f32)
+fn tick_circles(circles: &mut Vec<Circle>, elapsed_time: &f32)
 {
     for circle in circles.iter_mut()
     {
-        circle.tick(elapsed_time, delta_time);
+        circle.tick(elapsed_time);
     }
 }
 
@@ -107,7 +104,7 @@ impl Circle
     }
     
     // A function for updating the position of a circle, it does not output anything, it only changes struct values
-    fn tick(self: &mut Circle, elapsed_time: &f32 , delta_time: &f32)
+    fn tick(self: &mut Circle, elapsed_time: &f32)
     {
         self.angle = elapsed_time * self.delta_angle;
         self.offset = (elapsed_time + self.random_factor).sin() * 0.6;

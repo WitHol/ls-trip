@@ -22,7 +22,7 @@ fn main()
     let args: Vec<String> = std::env::args().collect(); // Collecting the arguments
     let mut duration: f32 = 10.0; // The duration of the drug trip
     let mut no_stop: bool = false; // Whether or not to allow stopping the program with ctrl+c
-    let mut trip_type: i16 = rand::thread_rng().gen_range(0..2);
+    let mut trip_type: i16 = rand::thread_rng().gen_range(0..2); // The drug trip type (number)
 
     // Processing the arguments, and adjusting previously defined variables according to the flags
     process_args(&args, &mut duration, &mut no_stop, &mut trip_type);

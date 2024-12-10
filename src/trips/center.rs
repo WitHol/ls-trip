@@ -46,7 +46,7 @@ impl Center
             shift: 0.0,
             
             delta_rotation: rng.gen_range(0.0..0.1),
-            delta_shift: rng.gen_range(0.2..0.3),
+            delta_shift: rng.gen_range(0.5..0.7),
         }
     }
 
@@ -67,7 +67,7 @@ impl Center
                 {
                     let dir = direction(&unity, &unitx);
                     let mut dist = angular_distance(cut, &dir);
-                    dist = (0.4 - dist) * self.cut;
+                    dist = (0.8 / (dist + 0.4) - 0.4) * self.cut;
                     if dist > 0.0 { level += dist; }
                 }
 

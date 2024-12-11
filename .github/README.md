@@ -29,6 +29,7 @@ make uninstall
 ```
 To update:
 ```
-make update
+git pull
+make
 make install
 ```

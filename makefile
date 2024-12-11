@@ -18,9 +18,3 @@ uninstall:
 		echo "file /usr/bin/lsd is not a symlink to /usr/bin/ls-trip, so it won't be removed";								\
 	fi
 
-update:
-	@echo "fetching the repo..."
-	@git pull
-
-	@echo "compiling the project..."
-	@cargo build --release

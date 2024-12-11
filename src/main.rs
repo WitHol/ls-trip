@@ -120,17 +120,17 @@ fn process_args(args: &Vec<String>, duration: &mut f32, no_stop: &mut bool, trip
 // This variable holds the message displayed when -h flag is given  
 lazy_static!{
     static ref HELP: String = String::from("
-        Simulate a drug trip whenever you mistype ls for lsd
-        Usage: lsd/ls-trip <flag> [...]
+Simulate a drug trip whenever you mistype ls for lsd
+Usage: lsd/ls-trip [flag] [...]
 
-        Avilable flags:
-            -h, --help              print this menu
-            -l, --list              list drug trip types
-            -t, --type              drug trip type name
-            -T, --type-number       drug trip type number
-            -d, --duration          duration of the drug trip in seconds
-            -c, --no-cancel         disable the user's ability to stop the program with ctrl-c
-    ");
+Avilable flags:
+    -h, --help              print this menu
+    -l, --list              list drug trip types
+    -t, --type              drug trip type name
+    -T, --type-number       drug trip type number
+    -d, --duration          duration of the drug trip in seconds
+    -c, --no-cancel         disable the user's ability to stop the program with ctrl-c"
+    );
 }
 
 // This is a hashmap, used to assign different trip type names with the trip numbers

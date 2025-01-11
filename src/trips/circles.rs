@@ -1,13 +1,13 @@
 // This file contains functions used to create the "circles" drug trip type
-// The only thing, that should be used outside of this file is the circles() function,
+// The only thing, that should be used outside of this file is the main() function,
 // everyting else is only used here
 
 use rand::Rng;
-use crate::shared::*;
+use crate::shared;
 
 // The main function, upon being called it creates the "circles" drug trip, which lasts for
 // a given amount of seconds and ends. This function does not initialize or end the ncurses window itself.
-pub fn main(mut duration: f32)
+pub fn main(duration: f32)
 {
     let mut circles: Vec<Circle> = vec![];
     let amount: i8 = rand::thread_rng().gen_range(8..13);
@@ -17,13 +17,11 @@ pub fn main(mut duration: f32)
         circles.push(Circle::new());
     }
     
-    // Preparing a variable for calculating delta time
     let start= std::time::Instant::now();
     let mut elapsed_time: f32 = 0.0;
 
     while duration > elapsed_time
     {
-        // Calculating the delta time and elapsed 
         elapsed_time = std::time::Instant::now().duration_since(start).as_secs_f32();
 
         tick_circles(&mut circles, &elapsed_time);
@@ -34,13 +32,12 @@ pub fn main(mut duration: f32)
 // The funtion used for rendering the circles to the screen
 fn render_circles(circles: &Vec<Circle>)
 {
-
     for y in 0..ncurses::LINES()
     {
         for x in 0..ncurses::COLS()
         {
             ncurses::mv(y, x);
-            let (unity,unitx) = to_unit(y, x);
+            let (unity,unitx) = shared::to_unit(y, x);
             let mut level: f32 = 0.0;
 
             for circle in circles.iter()
@@ -50,16 +47,16 @@ fn render_circles(circles: &Vec<Circle>)
 
             let pair = match (level*0.6).round() % 9.0
             {
-                0.0 => PAIR_WHITE,
-                1.0 => PAIR_AQUA,
-                2.0 => PAIR_GREEN,
-                3.0 => PAIR_YELLOW,
-                4.0 => PAIR_RED,
-                5.0 => PAIR_MAGENTA,
-                6.0 => PAIR_ORANGE,
-                7.0 => PAIR_CYAN,
-                8.0 => PAIR_BLUE,
-                _ => PAIR_WHITE,
+                0.0 => shared::PAIR_WHITE,
+                1.0 => shared::PAIR_AQUA,
+                2.0 => shared::PAIR_GREEN,
+                3.0 => shared::PAIR_YELLOW,
+                4.0 => shared::PAIR_RED,
+                5.0 => shared::PAIR_MAGENTA,
+                6.0 => shared::PAIR_ORANGE,
+                7.0 => shared::PAIR_CYAN,
+                8.0 => shared::PAIR_BLUE,
+                _ => shared::PAIR_WHITE,
             };
 
             ncurses::attron(ncurses::COLOR_PAIR(pair));

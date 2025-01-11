@@ -1,5 +1,9 @@
+// This file contains functions used to create the "circles" drug trip type
+// The only thing, that should be used outside of this file is the main() function,
+// everyting else is only used here
+
 use rand::Rng;
-use crate::shared::*;
+use crate::shared;
 use std::f32::consts::PI;
 
 // The main function
@@ -7,7 +11,6 @@ pub fn main(duration: f32)
 {
     let mut center = Center::new();
 
-    // Preparing a variable for calculating delta time
     let start = std::time::Instant::now();
     let mut elapsed_time: f32 = 0.0;
    
@@ -58,31 +61,31 @@ impl Center
             for x in 0..ncurses::COLS()
             {
                 ncurses::mv(y,x);
-                let (unity, unitx) = to_unit(y,x);
+                let (unity, unitx) = shared::to_unit(y,x);
 
-                let mut level: f32 = distance(&unity, &unitx);
+                let mut level: f32 = shared::distance(&unity, &unitx);
                 level += self.shift;
                 
                 for cut in self.cuts.iter()
                 {
-                    let dir = direction(&unity, &unitx);
-                    let mut dist = angular_distance(cut, &dir);
+                    let dir = shared::direction(&unity, &unitx);
+                    let mut dist = shared::angular_distance(cut, &dir);
                     dist = (0.8 / (dist + 0.4) - 0.4) * self.cut;
                     if dist > 0.0 { level += dist; }
                 }
 
                 let pair = match (level * self.compactness).round() % 9.0
                 {
-                    0.0 => PAIR_WHITE,
-                    1.0 => PAIR_AQUA,
-                    2.0 => PAIR_GREEN,
-                    3.0 => PAIR_YELLOW,
-                    4.0 => PAIR_RED,
-                    5.0 => PAIR_MAGENTA,
-                    6.0 => PAIR_ORANGE,
-                    7.0 => PAIR_CYAN,
-                    8.0 => PAIR_BLUE,
-                    _ => PAIR_WHITE,
+                    0.0 => shared::PAIR_WHITE,
+                    1.0 => shared::PAIR_AQUA,
+                    2.0 => shared::PAIR_GREEN,
+                    3.0 => shared::PAIR_YELLOW,
+                    4.0 => shared::PAIR_RED,
+                    5.0 => shared::PAIR_MAGENTA,
+                    6.0 => shared::PAIR_ORANGE,
+                    7.0 => shared::PAIR_CYAN,
+                    8.0 => shared::PAIR_BLUE,
+                    _ => shared::PAIR_WHITE,
                 };
 
                 ncurses::attr_on(ncurses::COLOR_PAIR(pair));

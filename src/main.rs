@@ -53,4 +53,3 @@ fn main()
     // Closing the window
     ncurses::endwin();
 }
-

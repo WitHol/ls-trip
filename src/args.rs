@@ -6,72 +6,51 @@ variables, as well as a few other private functions to prevent code duplication
 use lazy_static::lazy_static;
 use std::collections::HashMap;
 
-pub fn parse(args: &Vec<String>, duration: &mut f32, no_cancel: &mut bool, trip_type: &mut i16)
-{
+macro_rules! exec_if_provided {
+    ( $fun:expr, $val:expr, $args:expr, $i:expr, $mess:expr) => {
+        $fun($val, $args.get($i+1).expect($mess), &mut $i)
+    }
+}
+
+macro_rules! exec_if_provided_and_last {
+    ($fun:expr, $val:expr, $args:expr, $i:expr, $j:expr, $mess:expr) => {
+        if $j == $args[$i].len()-1 {
+            exec_if_provided!($fun, $val, $args, $i, $mess);
+        } else {
+            panic!("flags that requires a value have to be at the end of the combination");
+        }
+    };
+}
+
+// The main function
+pub fn parse(args: &Vec<String>, duration: &mut f32, no_cancel: &mut bool, trip_type: &mut i16){
     let mut i: usize = 1;
 
-    while i < args.len()
-    {
-        if &args[i][0..2] == "--" // Long flags starting with --
-        {
-            match args[i].as_str()
-            {
+    while i < args.len() {
+        if &args[i][0..2] == "--" { // Long flags starting with --
+            match args[i].as_str() {
                 "--help" => arg_help(),
                 "--list" => arg_list(),
                 "--no-cancel" => arg_no_cancel(no_cancel),
-                "--duration" => arg_duration(duration, args.get(i+1)
-                    .expect("duration not provided"), 
-                    &mut i),
-                "--type" => arg_type(trip_type, args.get(i+1)
-                    .expect("trip type not provided"), 
-                    &mut i),
-                "--type-number" => arg_type_number(trip_type, args.get(i+1)
-                    .expect("trip number not provided"), 
-                    &mut i),
+                "--duration" => exec_if_provided!(arg_duration, duration, args, i, "duration not provided"),
+                "--type" => exec_if_provided!(arg_type, trip_type, args, i, "trip type not provided"),
+                "--type-number" => exec_if_provided!(arg_type_number, trip_type, args, i, "trip type number not provided"),
                     
-                other_flag => {
-                    panic!("wrong flag: {}", other_flag);
-                }
+                other_flag => panic!("wrong flag: {}", other_flag)
             };
         }
-        else if &args[i][0..1] == "-" // Short flags starting with -
-        {
-            for j in 1..args[i].len()
-            {
+        else if &args[i][0..1] == "-" { // Short flags starting with -
+            for j in 1..args[i].len() {
                 let char = &args[i][j..j+1];
-                match char
-                {
+                match char {
                     "h" => arg_help(),
                     "l" => arg_list(),
                     "c" => arg_no_cancel(no_cancel),
+                    "d" => exec_if_provided_and_last!(arg_duration, duration, args, i, j, "duration not provided"),
+                    "t" => exec_if_provided_and_last!(arg_type, trip_type, args, i, j, "trip type not provided"),
+                    "T" => exec_if_provided_and_last!(arg_type_number, trip_type, args, i, j, "trip type number not provided"),
 
-                    "d" => if j == args[i].len()-1 {
-                        arg_duration(duration, args.get(i+1)
-                            .expect("duration not provided"), 
-                            &mut i)
-                    } else {
-                        panic!("flags that requires a value have to be at the end of the combination")
-                    }
-
-                    "t" => if j == args[i].len()-1 {
-                        arg_type(trip_type, args.get(i+1)
-                            .expect("trip type not provided"), 
-                            &mut i)
-                    } else {
-                        panic!("flags that requires a value have to be at the end of the combination")
-                    }
-
-                    "T" => if j == args[i].len()-1 {
-                        arg_type_number(trip_type, args.get(i+1)
-                            .expect("trip number not provided"), 
-                            &mut i)
-                    } else {
-                        panic!("flags that requires a value have to be at the end of the combination")
-                    }
-
-                    other_flag => {
-                        panic!("wrong flag: {}", other_flag);
-                    }
+                    other_flag => panic!("wrong flag: {}", other_flag)
                 }
             }
         }
@@ -84,7 +63,6 @@ pub fn parse(args: &Vec<String>, duration: &mut f32, no_cancel: &mut bool, trip_
     }
 }
 
-    
 // This is a hashmap, used to assign different trip type names with the trip numbers
 lazy_static!{
     static ref DRUG_TRIPS: HashMap<String, i16> = HashMap::<String, i16>::from([
@@ -142,7 +120,7 @@ pub fn arg_type_number(trip_type: &mut i16, next_arg: &str, i: &mut usize)
     *trip_type = next_arg.parse::<i16>()
         .expect("not a number")
         -1;
-    
+
     if *trip_type < 0 || *trip_type > DRUG_TRIPS.len() as i16
     {
         panic!("no such drug trip");

@@ -4,8 +4,8 @@
 
 Ls-trip is a joke shell utility, that simulates a drug trip every time you mistype "ls" for "lsd". It can also be activated with the "ls-trip" command.
 
-<img src=../assets/center.gif width=49% align=left />
-<img src=../assets/circles.gif width=49% align=right />
+<img src=../assets/center-showcase.gif width=49% align=left />
+<img src=../assets/circles-showcase.gif width=49% align=right />
 
 # Installation
 This program is currently only avilable on Linux.

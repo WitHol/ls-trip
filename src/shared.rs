@@ -7,8 +7,7 @@ Think of this file as a small library created specifically for this project
 use std::f32::consts::PI;
 
 // Custom ncurses colors configuration
-pub fn colors_setup()
-{
+pub fn colors_setup() {
     ncurses::init_color(11, 0x00, 0xbc, 0xd4); // Aqua
     ncurses::init_color(12, 0xff, 0x98, 0x00); // Orange
 
@@ -44,16 +43,14 @@ lazy_static::lazy_static!{
 }
 
 
-// A function for calculating unit position
-pub fn to_unit(y: i32, x: i32) -> (f32, f32)
-{
+// A function for calculating unit position from a terminal one
+pub fn to_unit(y: i32, x: i32) -> (f32, f32) {
     return (y as f32/ncurses::LINES() as f32-0.5, x as f32/ncurses::COLS() as f32-0.5);
 }
 
 
-// A function for calculating a difference between two values
-pub fn angular_distance(a: &f32, b: &f32) -> f32
-{
+// A function for calculating a difference between two angles
+pub fn angular_distance(a: &f32, b: &f32) -> f32 {
     let diff = (a - b).abs();
     return match diff > PI{
         false => diff,
@@ -63,15 +60,13 @@ pub fn angular_distance(a: &f32, b: &f32) -> f32
 
 
 // The in which a position is from (0,0), a glorified wrapper around atan2()
-pub fn direction(y: &f32, x: &f32) -> f32
-{
+pub fn direction(y: &f32, x: &f32) -> f32 {
     let dir = -(-x).atan2(*y);
     return match dir < 0.0 { true => std::f32::consts::PI*2.0 + dir, false => dir};
 }
 
 
-// A distance of a point from (0,0), a pythagoreas equation
-pub fn distance(y: &f32, x: &f32) -> f32
-{
+// A distance of a point from (0,0) with pythagoras' theorem
+pub fn distance(y: &f32, x: &f32) -> f32 {
     return (y*y + x*x).sqrt();
 }

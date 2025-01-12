@@ -41,12 +41,10 @@ fn main()
     colors_setup(); // Defining a bunch of color groups as well as a few colors, so they are avilable later on
 
     // The main body of this program
-    if trip_type == 0
-    {
+    if trip_type == 0 {
         circles::main(duration);
     }
-    else if trip_type == 1
-    {
+    else if trip_type == 1 {
         center::main(duration);
     }
 

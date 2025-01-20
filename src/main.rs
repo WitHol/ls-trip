@@ -42,10 +42,10 @@ fn main()
 
     // The main body of this program
     if trip_type == 0 {
-        circles::main(duration);
+        circles::trip(duration);
     }
     else if trip_type == 1 {
-        center::main(duration);
+        center::trip(duration);
     }
 
     // Closing the window

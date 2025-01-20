@@ -7,7 +7,7 @@ use crate::shared;
 use std::f32::consts::PI;
 
 // The main function
-pub fn main(duration: f32) {
+pub fn trip(duration: f32) {
     let mut center = Center::new();
 
     let start = std::time::Instant::now();
@@ -26,12 +26,13 @@ pub fn main(duration: f32) {
 // This is a separate struct with its own functions purely for organization purposes 
 struct Center {
     cuts: Vec<f32>, 
-    cut: f32,
     compactness: f32,
+    base_cut: f32,
 
     delta_rotation: f32,
     delta_shift: f32,
 
+    cut: f32,
     rotation: f32,
     shift: f32,
 }
@@ -47,16 +48,19 @@ impl Center {
             cuts.push(i as f32 * PI*2.0 / cut_count as f32);
         }
 
+        let base_cut = rng.gen_range(0.7..1.3);
+
         Center{
             cuts: cuts,
-            cut: rng.gen_range(0.3..0.7),
             compactness: rng.gen_range(12.0..18.0),
+            base_cut: base_cut,
             
             rotation: 0.0,
             shift: 0.0,
             
+            cut: base_cut,
             delta_rotation: rng.gen_range(0.0..0.1),
-            delta_shift: rng.gen_range(0.5..0.7),
+            delta_shift: rng.gen_range(0.6..0.9),
         }
     }
 
@@ -69,12 +73,10 @@ impl Center {
 
                 let mut level: f32 = shared::distance(&unity, &unitx);
                 level += self.shift;
-                
                 for cut in self.cuts.iter() {
                     let dir = shared::direction(&unity, &unitx);
-                    let mut dist = shared::angular_distance(cut, &dir);
-                    dist = (0.8 / (dist + 0.4) - 0.4) * self.cut;
-                    if dist > 0.0 { level += dist; }
+                    let dist = shared::angular_distance(cut, &dir);
+                    level += self.cut / (dist + 0.5) - self.cut * 0.5;
                 }
 
                 let pair = match (level * self.compactness).round() % 9.0 {
@@ -104,7 +106,6 @@ impl Center {
     fn tick(self: &mut Center, elapsed_time: f32) {
         self.rotation = self.delta_rotation * elapsed_time;
         self.shift = self.delta_shift * elapsed_time;
+        self.cut = (elapsed_time * 3.0).sin()/2.0 + 0.7 * self.base_cut;
     }
-
-
 }

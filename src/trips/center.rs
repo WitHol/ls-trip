@@ -64,7 +64,7 @@ impl Center {
         }
     }
 
-    // A function for rendering thes
+    // A function for rendering the center
     fn render(self: &Center) {
         for y in 0..ncurses::LINES() {
             for x in 0..ncurses::COLS() {

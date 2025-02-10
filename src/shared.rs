@@ -11,15 +11,15 @@ pub fn colors_setup() {
     ncurses::init_color(11, 0x00, 0xbc, 0xd4); // Aqua
     ncurses::init_color(12, 0xff, 0x98, 0x00); // Orange
 
-    ncurses::init_pair(0, ncurses::COLOR_WHITE, ncurses::COLOR_BLACK);
-    ncurses::init_pair(1, COLOR_AQUA, ncurses::COLOR_BLACK);
-    ncurses::init_pair(2, ncurses::COLOR_GREEN, ncurses::COLOR_BLACK);
-    ncurses::init_pair(3, ncurses::COLOR_YELLOW, ncurses::COLOR_BLACK);
-    ncurses::init_pair(4, ncurses::COLOR_RED, ncurses::COLOR_BLACK,);
-    ncurses::init_pair(5, ncurses::COLOR_MAGENTA, ncurses::COLOR_BLACK);
-    ncurses::init_pair(6, COLOR_ORANGE, ncurses::COLOR_BLACK);
-    ncurses::init_pair(7, ncurses::COLOR_CYAN, ncurses::COLOR_BLACK);
-    ncurses::init_pair(8, ncurses::COLOR_BLUE, ncurses::COLOR_BLACK);
+    ncurses::init_pair(0, ncurses::COLOR_BLACK, ncurses::COLOR_WHITE);
+    ncurses::init_pair(1, ncurses::COLOR_BLACK, COLOR_AQUA);
+    ncurses::init_pair(2, ncurses::COLOR_BLACK, ncurses::COLOR_GREEN);
+    ncurses::init_pair(3, ncurses::COLOR_BLACK, ncurses::COLOR_YELLOW);
+    ncurses::init_pair(4, ncurses::COLOR_BLACK, ncurses::COLOR_RED);
+    ncurses::init_pair(5, ncurses::COLOR_BLACK, ncurses::COLOR_MAGENTA);
+    ncurses::init_pair(6, ncurses::COLOR_BLACK, COLOR_ORANGE);
+    ncurses::init_pair(7, ncurses::COLOR_BLACK, ncurses::COLOR_CYAN);
+    ncurses::init_pair(8, ncurses::COLOR_BLACK, ncurses::COLOR_BLUE);
 }
 
 pub const COLOR_AQUA: i16 = 11;

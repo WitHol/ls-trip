@@ -7,10 +7,10 @@ use crate::shared;
 
 // The main function
 pub fn trip(duration: f32) {
+    let circles_count: i8 = rand::thread_rng().gen_range(8..13);
     let mut circles: Vec<Circle> = vec![];
-    let amount: i8 = rand::thread_rng().gen_range(8..13);
     
-    for _ in 0..amount {
+    for _ in 0..circles_count {
         circles.push(Circle::new());
     }
     

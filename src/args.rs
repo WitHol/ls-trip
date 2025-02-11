@@ -60,16 +60,17 @@ pub fn parse(args: &Vec<String>, duration: &mut f32, no_cancel: &mut bool, trip_
 }
 
 // This is a hashmap used to assign different trip type names to the corresponding trip type numbers
+
 lazy_static!{
-    static ref DRUG_TRIPS: HashMap<String, i16> = HashMap::<String, i16>::from([
-        (String::from("circles"), 0),
-        (String::from("center"), 1),
+    static ref DRUG_TRIPS: HashMap<&'static str, i16> = HashMap::<&'static str, i16>::from([
+        ("circles", 1),
+        ("center", 2),
+        ("center", 3),
     ]);
 }
 
 // This is a string, that contains the help message
-lazy_static!{
-    static ref HELP: String = String::from(
+const HELP: &str = 
 "Simulate a drug trip whenever you mistype ls for lsd
 Usage: lsd/ls-trip [flag] [...]
 
@@ -79,13 +80,11 @@ Avilable flags:
     -t, --type              set the drug trip type by name
     -T, --type-number       set the drug trip type by number
     -d, --duration          set the duration of the drug trip (in seconds)
-    -c, --no-cancel         disable the user's ability to stop the program with ctrl-c"
-    );
-}
+    -c, --no-cancel         disable the user's ability to stop the program with ctrl-c";
 
 // The following functions directly correspond to the flags
 pub fn arg_help() {
-    println!("{}", *HELP);
+    println!("{}", HELP);
     std::process::exit(0);
 }
 
@@ -102,7 +101,7 @@ pub fn arg_no_cancel(no_cancel: &mut bool) {
 }
 
 pub fn arg_type(trip_type: &mut i16, next_arg: &str, i: &mut usize) {
-    *trip_type = *DRUG_TRIPS.get(&next_arg.to_string())
+    *trip_type = *DRUG_TRIPS.get(next_arg)
         .expect("no such drug trip");
 
     *i += 1;
@@ -110,12 +109,7 @@ pub fn arg_type(trip_type: &mut i16, next_arg: &str, i: &mut usize) {
 
 pub fn arg_type_number(trip_type: &mut i16, next_arg: &str, i: &mut usize) {
     *trip_type = next_arg.parse::<i16>()
-        .expect("not a number")
-        -1;
-
-    if *trip_type < 0 || *trip_type > DRUG_TRIPS.len() as i16 {
-        panic!("no such drug trip");
-    }
+        .expect("not a number");
 
     *i += 1;
 }

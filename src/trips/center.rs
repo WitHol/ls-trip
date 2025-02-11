@@ -42,8 +42,8 @@ impl Center {
     fn new() -> Center {
         let mut rng = rand::thread_rng();
 
-        let mut cuts = Vec::<f32>::new();
         let cut_count = rng.gen_range(4..8);
+        let mut cuts = Vec::<f32>::new();
         for i in 0..cut_count {
             cuts.push(i as f32 * PI*2.0 / cut_count as f32);
         }
@@ -68,7 +68,6 @@ impl Center {
     fn render(self: &Center) {
         for y in 0..ncurses::LINES() {
             for x in 0..ncurses::COLS() {
-                ncurses::mv(y,x);
                 let (unity, unitx) = shared::to_unit(y,x);
 
                 let mut level: f32 = shared::distance(&unity, &unitx);
@@ -93,7 +92,7 @@ impl Center {
                 };
 
                 ncurses::attr_on(ncurses::COLOR_PAIR(pair));
-                ncurses::addch('#' as ncurses::ll::chtype);
+                ncurses::mvaddch(y, x, ' ' as ncurses::ll::chtype);
                 ncurses::attroff(ncurses::COLOR_PAIR(pair));
             }
         }

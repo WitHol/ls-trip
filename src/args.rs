@@ -3,8 +3,7 @@ This file containst a pure, public main funtion, that parses the arguments and a
 variables, as well as a few other private functions to prevent code duplication
 */
 
-use lazy_static::lazy_static;
-use std::collections::HashMap;
+use crate::shared::{self, DRUG_TRIPS};
 
 macro_rules! exec_if_provided {
     ( $fun:expr, $val:expr, $args:expr, $i:expr, $mess:expr) => {
@@ -59,62 +58,46 @@ pub fn parse(args: &Vec<String>, duration: &mut f32, no_cancel: &mut bool, trip_
     }
 }
 
-// This is a hashmap used to assign different trip type names to the corresponding trip type numbers
-
-lazy_static!{
-    static ref DRUG_TRIPS: HashMap<&'static str, i16> = HashMap::<&'static str, i16>::from([
-        ("circles", 1),
-        ("center", 2),
-        ("center", 3),
-    ]);
-}
-
-// This is a string, that contains the help message
-const HELP: &str = 
-"Simulate a drug trip whenever you mistype ls for lsd
-Usage: lsd/ls-trip [flag] [...]
-
-Avilable flags:
-    -h, --help              print this message
-    -l, --list              list drug trip types
-    -t, --type              set the drug trip type by name
-    -T, --type-number       set the drug trip type by number
-    -d, --duration          set the duration of the drug trip (in seconds)
-    -c, --no-cancel         disable the user's ability to stop the program with ctrl-c";
 
 // The following functions directly correspond to the flags
-pub fn arg_help() {
-    println!("{}", HELP);
+fn arg_help() {
+    println!("{}", shared::HELP);
     std::process::exit(0);
 }
 
-pub fn arg_list() {
+fn arg_list() {
     println!("Avilable drug trip types:");
-    for (key, value) in DRUG_TRIPS.iter() {
-        println!("{} - {}", value, key);
+    for (number, name) in shared::DRUG_TRIPS.iter() {
+        println!("{number} - {name}");
     }
+
     std::process::exit(0);
 }
 
-pub fn arg_no_cancel(no_cancel: &mut bool) {
+fn arg_no_cancel(no_cancel: &mut bool) {
     *no_cancel = false;
 }
 
-pub fn arg_type(trip_type: &mut i16, next_arg: &str, i: &mut usize) {
-    *trip_type = *DRUG_TRIPS.get(next_arg)
-        .expect("no such drug trip");
-
-    *i += 1;
+fn arg_type(trip_type: &mut i16, next_arg: &str, i: &mut usize) {
+    for (number, name) in DRUG_TRIPS.iter(){
+        if *name == next_arg {
+            *trip_type = *number;
+            *i += 1;
+            return;
+        }
+    }
+    
+    panic!("no such drug trip");
 }
 
-pub fn arg_type_number(trip_type: &mut i16, next_arg: &str, i: &mut usize) {
+fn arg_type_number(trip_type: &mut i16, next_arg: &str, i: &mut usize) {
     *trip_type = next_arg.parse::<i16>()
         .expect("not a number");
 
     *i += 1;
 }
 
-pub fn arg_duration(duration: &mut f32, next_arg: &str, i: &mut usize) {
+fn arg_duration(duration: &mut f32, next_arg: &str, i: &mut usize) {
     *duration = next_arg.parse()
         .expect("wrong duration");
 

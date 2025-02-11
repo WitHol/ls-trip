@@ -18,7 +18,6 @@ pub fn trip(duration: f32) {
 struct Ellipse {
     speed: f32,
     scale: f32,
-    compactness: f32,
 }
 
 impl Ellipse {
@@ -26,8 +25,7 @@ impl Ellipse {
         let mut rng = rand::thread_rng();
         return Self {
             speed: rng.gen_range(1.5..3.0),
-            compactness: rng.gen_range(1.5..2.5),
-            scale: rng.gen_range(1.5..3.0),
+            scale: rng.gen_range(1.0..3.0),
         }
     }
 
@@ -53,7 +51,7 @@ impl Ellipse {
                 let diff = (unitx.powi(2) + (unity-o).powi(2) - r.powi(2)).abs();
     
                 // Getting the color pair based on the difference
-                let color_pair = match (diff.round() * self.compactness) % 9.0 {
+                let color_pair = match (diff.round() * 2.0) % 9.0 {
                     0.0 => shared::PAIR_WHITE,
                     1.0 => shared::PAIR_AQUA,
                     2.0 => shared::PAIR_GREEN,

@@ -40,7 +40,7 @@ fn main()
         1 => trips::circles::trip(duration),
         2 => trips::center::trip(duration),
         3 => trips::ellipse::trip(duration),
-        _ => panic!("No such drug trip!")
+        _ => {ncurses::endwin(); panic!("No such drug trip!")}
     }
 
     // Closing the window

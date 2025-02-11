@@ -1,3 +1,3 @@
 pub mod circles;
 pub mod center;
-pub mod stripes;
+pub mod ellipse;

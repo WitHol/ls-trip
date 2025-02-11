@@ -4,6 +4,7 @@ use crate::shared;
 pub fn trip(duration: f32) {
     let ellipse = Ellipse::new();
 
+    // For delta time
     let start= std::time::Instant::now();
     let mut elapsed_time: f32 = 0.0;
 
@@ -21,6 +22,15 @@ struct Ellipse {
 }
 
 impl Ellipse {
+    fn new() -> Self {
+        let mut rng = rand::thread_rng();
+        return Self {
+            speed: rng.gen_range(1.5..3.0),
+            compactness: rng.gen_range(1.5..2.5),
+            scale: rng.gen_range(1.5..3.0),
+        }
+    }
+
     // The function, that renders the ellipse
     //
     // -1 < a < 1
@@ -35,12 +45,15 @@ impl Ellipse {
     
         for y in 0..ncurses::LINES(){
             for x in 0..ncurses::COLS(){
-                let x_ = self.scale * (x as f32 / ncurses::COLS() as f32 - 0.5);
-                let y_ = self.scale * (y as f32 / ncurses::LINES() as f32 - 0.5);
+                let (mut unity, mut unitx) = shared::to_unit(y, x);
+                unity *= self.scale;
+                unitx *= self.scale;
                 
-                let diff = (x_.powi(2) + (y_-o).powi(2) - r.powi(2)).abs();
+                // Calculating, how far the current pixel is from the ellipse
+                let diff = (unitx.powi(2) + (unity-o).powi(2) - r.powi(2)).abs();
     
-                let pair = match (diff.round() * self.compactness) % 9.0 {
+                // Getting the color pair based on the difference
+                let color_pair = match (diff.round() * self.compactness) % 9.0 {
                     0.0 => shared::PAIR_WHITE,
                     1.0 => shared::PAIR_AQUA,
                     2.0 => shared::PAIR_GREEN,
@@ -53,22 +66,12 @@ impl Ellipse {
                     _ => shared::PAIR_WHITE,
                 };
     
-                ncurses::attr_on(ncurses::COLOR_PAIR(pair));
+                // Placing the colored space
+                ncurses::attr_on(ncurses::COLOR_PAIR(color_pair));
                 ncurses::mvaddch(y, x, ' ' as ncurses::ll::chtype);
-                ncurses::attroff(ncurses::COLOR_PAIR(pair));
-                
+                ncurses::attroff(ncurses::COLOR_PAIR(color_pair));
             }
         }
-    
         ncurses::refresh();
-    }
-
-    fn new() -> Self {
-        let mut rng = rand::thread_rng();
-        return Self {
-            speed: rng.gen_range(1.5..3.0),
-            compactness: rng.gen_range(1.5..2.5),
-            scale: rng.gen_range(1.5..3.0),
-        }
     }
 }

@@ -75,7 +75,7 @@ fn arg_list() {
 }
 
 fn arg_no_cancel(no_cancel: &mut bool) {
-    *no_cancel = false;
+    *no_cancel = true;
 }
 
 fn arg_type(trip_type: &mut i16, next_arg: &str, i: &mut usize) {
